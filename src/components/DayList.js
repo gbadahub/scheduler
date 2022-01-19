@@ -5,9 +5,9 @@ export default function DayList(props){
   console.log('Testing props',props)
   return(
     
-    <ul onClick={() => props.setDay(props.days.name)}>
+    <ul>
   {props.days.map(day =>
-  <DayListItem key={day.id} name={day.name} spots={day.spots} selected={day.name === day} setDay={day.setDay}/>
+  <DayListItem key={day.id} name={day.name} spots={day.spots} selected={day.name === props.day} setDay={day.setDay}/>
 )
 
 }
