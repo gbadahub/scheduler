@@ -27,7 +27,7 @@ const availableSpots = formatSpots(props.spots)
   return (
     <li 
     className={dayClass}
-    onClick={() => props.setDay(props.name)}
+    onClick={() => props.setDay(props.name)} selected={props.selected}
     >
       <h2 className="text--regular">{props.name}</h2>
       <h3 className="text--light">{availableSpots}</h3>
