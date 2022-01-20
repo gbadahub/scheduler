@@ -14,6 +14,7 @@ import Show from "components/Appointment/Show"
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error"
+import Form from "components/Appointment/Form"
 
 // Buttons
 storiesOf("Button", module)
@@ -149,6 +150,10 @@ storiesOf("Appointment", module)
   .add("Confirm", () => <Confirm onCancel={action("onCancel")} onConfirm={action("onConfirm")} />)
   .add("Status", () => <Status/>)
   .add("Error", () => <Error onClose={action("onClose")}/>)
+  .add("Form-create", () => <Form interviewers={interviewers} onCancel={action("onCancel")} onSave={action("onSave")}/> )
+  .add('Form-edit', () => (<Form name="Georgina" interviewers={interviewers} interviewer={4} onSave={action('onSave')} onCancel={action('onCancel')}
+    />
+  ))
   
   
   
