@@ -5,18 +5,22 @@ import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 
+export default function Appointments(props) {
+  const showOrEmpty = props.interview ? (
+    <Show
+      student={props.interview.students}
+      interviewer={props.interview.interviewer}
+      onEdit={props.onEdit}
+      ondelete={props.ondelete}
+    />
+  ) : (
+    <Empty />
+  );
 
-
-
-
-export default function Appointments(props){
-  const showOrEmpty = props.interview? <Show /> : <Empty />;
-
-return(
-<article className="appointment">
-<Header/>
-{showOrEmpty}
-
-</article>
-);
+  return (
+    <article className="appointment">
+      <Header time={props.time} />
+      {showOrEmpty}
+    </article>
+  );
 }
