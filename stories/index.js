@@ -15,6 +15,7 @@ import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
 import Error from "components/Appointment/Error"
 import Form from "components/Appointment/Form"
+import { Fragment } from 'react'
 
 // Buttons
 storiesOf("Button", module)
@@ -150,10 +151,27 @@ storiesOf("Appointment", module)
   .add("Confirm", () => <Confirm onCancel={action("onCancel")} onConfirm={action("onConfirm")} />)
   .add("Status", () => <Status/>)
   .add("Error", () => <Error onClose={action("onClose")}/>)
-  .add("Form-create", () => <Form interviewers={interviewers} onCancel={action("onCancel")} onSave={action("onSave")}/> )
-  .add('Form-edit', () => (<Form name="Georgina" interviewers={interviewers} interviewer={4} onSave={action('onSave')} onCancel={action('onCancel')}
+  .add("Form: create", () => <Form interviewers={interviewers} onCancel={action("onCancel")} onSave={action("onSave")}/> )
+  .add('Form: edit', () => (<Form name="Georgina" interviewers={interviewers} interviewer={4} onSave={action('onSave')} onCancel={action('onCancel')}
     />
   ))
+  .add("Appointment Empty", () => (
+    <Fragment>
+      <Appointment id={1} time="4pm" />
+      <Appointment time="5pm" />
+    </Fragment>
+  ))
+  .add("Appointment Booked", () => (
+    <Fragment>
+      <Appointment
+        id={1}
+        time="4pm"
+        interview={{ student: "Lydia Miller-Jones", interviewer }}
+      />
+      <Appointment time="5pm" />
+    </Fragment>
+  ))
+  
   
   
   
