@@ -1,6 +1,5 @@
 
-export default function getAppointmentsForDay(state, day) {
-  console.log( "This is the state", state)
+export function getAppointmentsForDay(state, day) {
   const { days, appointments } = state;
   const filteredDay = days.find(item => day === item.name);
   if (days.length < 1 || filteredDay === undefined) {
@@ -11,3 +10,13 @@ export default function getAppointmentsForDay(state, day) {
 }
 
 
+export function getInterview(state, interview) {
+  if (!interview) {
+    return null;
+  }
+  const interviewObject = {
+    student: interview.student,
+    interviewer: state.interviewers[interview.interviewer]
+  };
+  return interviewObject;
+}
