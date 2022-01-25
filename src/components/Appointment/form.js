@@ -17,10 +17,15 @@ export default function Form(props) {
     props.onCancel()
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    props.onSave(student, interviewer)
+  }
+  
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form autoComplete="off">
+        <form autoComplete="off" onSubmit={(event)=>handleSubmit(event)}>
           <input
             className="appointment__create-input text--semi-bold"
             name={props.name}
@@ -34,7 +39,9 @@ export default function Form(props) {
         */
           />
         </form>
-        <InterviewerList interviewers={props.interviewers} />
+        <InterviewerList interviewers={props.interviewers} 
+        onChange={setInterviewer} 
+        value={interviewer}/>
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
