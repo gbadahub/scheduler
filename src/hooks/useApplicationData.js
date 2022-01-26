@@ -70,6 +70,7 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
+// http request to update database 
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
       const spotUpdate = updateSpots(state.day, state.days, "REMOVE_SPOT");
       setState({
@@ -78,7 +79,7 @@ export default function useApplicationData() {
         appointments,
       });
     });
-    //  setState((prev) => ({ ...prev, appointments })) });
+    
   }
 
   // cancelling appt
