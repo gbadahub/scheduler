@@ -21,7 +21,12 @@ export default function Form(props) {
     event.preventDefault();
     props.onSave(student, interviewer)
   }
-  
+   
+  function onSave (){
+ 
+    props.onSave(student,interviewer)
+  }
+
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -48,7 +53,7 @@ export default function Form(props) {
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onSubmit={event => event.preventDefault()} onClick={props.onSave}>
+          <Button confirm onSubmit={event => event.preventDefault()} onClick={onSave}>
             Save
           </Button>
         </section>

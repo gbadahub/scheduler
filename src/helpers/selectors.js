@@ -1,11 +1,10 @@
 
 export function getAppointmentsForDay(state, day) {
-  const { days, appointments } = state;
-  const filteredDay = days.find(item => day === item.name);
-  if (days.length < 1 || filteredDay === undefined) {
+  const filteredDay = state.days.find(item => day === item.name);
+  if (state.days.length < 1 || filteredDay === undefined) {
     return [];
   }
-  const daysAppointment = filteredDay.appointments.map(id => appointments[id]);
+  const daysAppointment = filteredDay.appointments.map(id => state.appointments[id]);
   return daysAppointment;
 }
 
