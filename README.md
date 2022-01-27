@@ -4,9 +4,9 @@ Interview Scheduler is a Single Page Application for tracking students interview
 
 ## Final Product
 
-!["screenshot description"](#)
+!["Image of blank schedule"](https://github.com/gbadahub/scheduler/blob/master/docs/image%20of%20blank%20Schedule.png)
 
-!["screenshot description"](#)
+!["Image of schedule with appointment booked"](https://github.com/gbadahub/scheduler/blob/master/docs/image%20of%20Schedule%20with%20appt.png)
 
 # Stack
 Front-End: React, Axios, JSX, HTML, SASS, JavaScript
