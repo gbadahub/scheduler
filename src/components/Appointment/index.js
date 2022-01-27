@@ -25,41 +25,40 @@ export default function Appointments(props) {
   );
 
   function save(name, interviewer) {
-   
     const interview = {
       student: name,
       interviewer,
     };
     transition(SAVING);
 
-    props.bookInterview(props.id, interview)
-    .then(()=> transition(SHOW))
-    .catch(error => transition(ERROR_SAVE, true));
+    props
+      .bookInterview(props.id, interview)
+      .then(() => transition(SHOW))
+      .catch((error) => transition(ERROR_SAVE, true));
   }
 
   //only perform the deletion when the user confirms
-   const confirm = () => {
+  const confirm = () => {
     transition(CONFIRM);
-      // to delete appt 
-
+    // to delete appt
   };
   const cancelledAppointment = () => {
     transition(DELETING, true);
     props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
-      .catch(error => transition(ERROR_DELETE, true));
+      .catch((error) => transition(ERROR_DELETE, true));
   };
 
- // editing appt
- const edit = () => transition(EDIT);
+  // editing appt
+  const edit = () => transition(EDIT);
 
   return (
     <article className="appointment">
       <Header time={props.time} />
-      
-    {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-    {mode === SHOW && (
+
+      {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+      {mode === SHOW && (
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
@@ -68,21 +67,12 @@ export default function Appointments(props) {
         />
       )}
       {mode === CREATE && (
-      <Form 
-      interviewers={props.interviewers}
-       onCancel={back} 
-       onSave = {save}
-      />
+        <Form interviewers={props.interviewers} onCancel={back} onSave={save} />
       )}
-      {mode === SAVING &&
-      (<Status  text="Saving"/>)}
-      {mode ===DELETING &&
-      (<Status text="Deleting"/>)}
+      {mode === SAVING && <Status text="Saving" />}
+      {mode === DELETING && <Status text="Deleting" />}
       {mode === CONFIRM && (
-        <Confirm
-          onCancel={back}
-          onConfirm={cancelledAppointment}
-        />
+        <Confirm onCancel={back} onConfirm={cancelledAppointment} />
       )}
       {mode === EDIT && (
         <Form
@@ -102,5 +92,3 @@ export default function Appointments(props) {
     </article>
   );
 }
-
-

@@ -1,11 +1,13 @@
 import { useState } from "react";
 
+// function to change modes when app in use
 export default function useVisualMode(initial) {
-  const [mode, setMode] = useState(initial);
+  const [mode, setMode] = useState(initial); 
   const [history, setHistory] = useState([initial]);
+ 
 
   function transition(mode, replace = false) {
-    // setHistory((prev) => [...prev, mode]);
+  
     setHistory((prev) =>
       replace ? [...prev.slice(0,-1), mode] : [...prev, mode]
     );
@@ -17,3 +19,5 @@ export default function useVisualMode(initial) {
   }
   return { mode: history[history.length - 1], transition, back };
 }
+
+

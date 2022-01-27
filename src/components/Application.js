@@ -10,15 +10,8 @@ import {
 import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
-  
-  const {
-    state,
-    setDay,
-    bookInterview,
-    cancelInterview,
-    editInterview
-  } = useApplicationData();
-
+  const { state, setDay, bookInterview, cancelInterview, editInterview } =
+    useApplicationData();
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
@@ -49,12 +42,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList
-            days={state.days}
-            day={state.day}
-            onChange={setDay}
-            
-          />
+          <DayList days={state.days} day={state.day} onChange={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"

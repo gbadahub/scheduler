@@ -43,7 +43,7 @@ export default function useApplicationData() {
 
   const setDay = (day) => setState({ ...state, day });
 
-  // using axios api got http requests
+  // using axios api for http requests to 
   useEffect(() => {
     Promise.all([
       axios.get("http://localhost:8001/api/days"),
@@ -70,7 +70,7 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
-// http request to update database 
+// http request to update database when appt is booked
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
       const spotUpdate = updateSpots(state.day, state.days, "REMOVE_SPOT");
       setState({
@@ -93,6 +93,7 @@ export default function useApplicationData() {
       [appointment]: deleteAppointment,
     };
 
+    // http request to update database when appt is canceled 
     return axios
       .delete(`/api/appointments/${appointment}`, deleteAppointment)
       .then(() => {
