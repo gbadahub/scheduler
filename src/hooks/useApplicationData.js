@@ -12,9 +12,16 @@ export default function useApplicationData() {
   // update spot function 
   const spotUpdate = (weekday, day, variable) => {
     let spot = day.spots;
+    
     if (weekday === day.name && variable === "REMOVE_SPOT") {
+      if (spot === 0){
+        return spot
+      } 
       return spot - 1;
     } else if (weekday === day.name && variable === "ADD_SPOT") {
+      if (spot === 5 ){
+        return spot
+      } 
       return spot + 1;
     } else {
       return spot;

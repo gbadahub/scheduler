@@ -5,7 +5,7 @@ import { useState } from "react";
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
-  const [interviewer, setInterviewer] = useState(props.interviewer || null);
+  const [interviewer, setInterviewer] = useState((props.interviewer && props.interviewer.id) || null);
   const [error, setError] = useState("");
 
 // resets entry when invoked
@@ -35,6 +35,7 @@ export default function Form(props) {
     setError("");
     props.onSave(student, interviewer);
   }
+
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -68,6 +69,9 @@ export default function Form(props) {
             confirm
             onSubmit={(event) => handleSubmit(event)}
             onClick={validate}
+            // checks if interviewer is selected
+            disabled={!interviewer}
+
           >
             Save
           </Button>
