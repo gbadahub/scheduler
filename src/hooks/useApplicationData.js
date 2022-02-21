@@ -13,6 +13,7 @@ export default function useApplicationData() {
   const spotUpdate = (weekday, day, variable) => {
     let spot = day.spots;
     
+    
     if (weekday === day.name && variable === "REMOVE_SPOT") {
       if (spot === 0){
         return spot
@@ -45,7 +46,10 @@ export default function useApplicationData() {
         };
       });
       return updatedStateDayArray;
+    } else{
+      return days
     }
+  
   };
 
   const setDay = (day) => setState({ ...state, day });
@@ -79,7 +83,7 @@ export default function useApplicationData() {
 
 // http request to update database when appt is booked
     return axios.put(`/api/appointments/${id}`, { interview }).then(() => {
-      const spotUpdate = updateSpots(state.day, state.days, "REMOVE_SPOT");
+      const spotUpdate = updateSpots(state.day, state.days,state.appointments[id].interview ? "" : "REMOVE_SPOT");
       setState({
         ...state,
         days: spotUpdate,
@@ -113,23 +117,7 @@ export default function useApplicationData() {
       });
   }
 
-  //function to edit interview
-  function editInterview(appointmentId, interviewObj) {
-    const editedAppointment = {
-      ...state.appointments[appointmentId],
-      interview: interviewObj,
-    };
-    const editedAppointments = {
-      ...state.appointments,
-      [appointmentId]: editedAppointment,
-    };
-    return axios
-      .put(
-        `/api/appointments/${appointmentId}`,
-        editedAppointments[appointmentId]
-      )
-      .then(setState({ ...state, appointments: editedAppointments }));
-  }
+  
 
-  return { state, setDay, bookInterview, cancelInterview, editInterview };
+  return { state, setDay, bookInterview, cancelInterview, };
 }
